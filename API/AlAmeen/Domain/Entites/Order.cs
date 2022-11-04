@@ -4,7 +4,7 @@
     {
         public int OrderId { get; set; }
         public string Status { get; set; }
-        public DateTime Date { get; set; } = DateTime.Now;
+        public DateTime Date { get; private set; } = DateTime.Now;
         public decimal Tax { get; set; }
         public decimal Subtotal { get; set; }
         public decimal Total { get; set; }
