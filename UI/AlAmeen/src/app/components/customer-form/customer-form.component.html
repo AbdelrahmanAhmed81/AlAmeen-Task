@@ -1,0 +1,114 @@
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <label class="col-3" for="firstName">First Name</label>
+    <input
+      class="col-9"
+      type="text"
+      id="firstName"
+      formControlName="firstName"
+      placeholder="enter customer first name"
+    />
+    <div class="col-3"></div>
+    <span
+      class="col-9"
+      *ngIf="
+        customerForm.get('firstName')?.dirty &&
+        customerForm.get('firstName')?.invalid
+      "
+    >
+      <span
+        *ngFor="let error of customerForm.get('firstName')?.errors | keyvalue"
+        >{{ firstNameErrors[error.key] }}</span
+      >
+    </span>
+  </div>
+  <div class="row">
+    <label class="col-3" for="lastName">Last Name</label>
+    <input
+      class="col-9"
+      type="text"
+      id="lastName"
+      formControlName="lastName"
+      placeholder="enter customer last name"
+    />
+    <div class="col-3"></div>
+    <span
+      class="col-9"
+      *ngIf="
+        customerForm.get('lastName')?.dirty &&
+        customerForm.get('lastName')?.invalid
+      "
+    >
+      <span
+        *ngFor="let error of customerForm.get('lastName')?.errors | keyvalue"
+        >{{ lastNameErrors[error.key] }}</span
+      >
+    </span>
+  </div>
+  <div class="row">
+    <label class="col-3" for="email">Email</label>
+    <input
+      class="col-9"
+      type="text"
+      id="email"
+      formControlName="email"
+      placeholder="enter customer email"
+    />
+    <div class="col-3"></div>
+    <span
+      class="col-9"
+      *ngIf="
+        customerForm.get('email')?.dirty && customerForm.get('email')?.invalid
+      "
+    >
+      <span
+        *ngFor="let error of customerForm.get('email')?.errors | keyvalue"
+        >{{ emailErrors[error.key] }}</span
+      >
+    </span>
+  </div>
+  <div class="row">
+    <label class="col-3" for="phone">Phone Number</label>
+    <input
+      class="col-9"
+      type="text"
+      id="phone"
+      formControlName="phone"
+      placeholder="enter customer phone"
+    />
+    <div class="col-3"></div>
+    <span
+      class="col-9"
+      *ngIf="
+        customerForm.get('phone')?.dirty && customerForm.get('phone')?.invalid
+      "
+    >
+      <span
+        *ngFor="let error of customerForm.get('phone')?.errors | keyvalue"
+        >{{ phoneErrors[error.key] }}</span
+      >
+    </span>
+  </div>
+  <div class="row">
+    <label class="col-3" for="isActive">Active Status</label>
+    <select class="col-9" id="isActive" formControlName="isActive">
+      <option value="true">Active</option>
+      <option value="false">Not Active</option>
+    </select>
+  </div>
+
+  <div class="row justify-content-end my-4">
+    <input
+      [disabled]="!customerForm.dirty || !customerForm.valid"
+      type="submit"
+      class="mx-2 col-3 btn btn-warning"
+      value="Save"
+    />
+    <input
+      type="button"
+      class="col-3 btn btn-secondary"
+      value="Cancel"
+      (click)="onCancel()"
+    />
+  </div>
+</form>

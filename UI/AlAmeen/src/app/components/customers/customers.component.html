@@ -1,0 +1,127 @@
+<div class="row flex-md-row flex-column-reverse">
+  <!-- #region DataSide -->
+  <div class="col-md-6 col-12">
+    <div class="row justify-content-between mb-2">
+      <input
+        class="col-10 p-2"
+        style="
+          border: 2px solid var(--border-color);
+          background-color: var(--bgcolor);
+          color: inherit;
+          border-radius: 5px;
+        "
+        type="search"
+        [value]="searchText"
+        (input)="searchTextInput($event)"
+        placeholder="enter course title"
+      />
+      <div class="col-1 mx-2 p-0">
+        <a style="cursor: pointer" (click)="onClickAdd()">
+          <i
+            style="color: green; font-size: 47px"
+            class="fa-solid fa-square-plus"
+          ></i>
+        </a>
+      </div>
+    </div>
+    <div *ngIf="isLoading; else DataLoaded">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <ng-template #DataLoaded>
+      <div *ngIf="customers.length === 0; else Customers">
+        <h1 class="fw-bold text-danger text-center">No Available Data</h1>
+      </div>
+      <ng-template #Customers>
+        <!-- data table -->
+        <table class="table" style="color: inherit">
+          <thead>
+            <tr>
+              <th>Customer Full Name</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let customer of customers">
+              <td>{{ customer.firstName + " " + customer.lastName }}</td>
+              <td>
+                <div class="d-flex">
+                  <a
+                    class="mx-2"
+                    style="color: lightseagreen; cursor: pointer"
+                    (click)="onClickEdit(customer)"
+                    ><i class="fa-solid fa-gear"></i
+                  ></a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ng-template>
+    <app-pages-navigator
+      [itemsTotalCount]="totalCustomers"
+      [pageCapacity]="pageCapacity"
+      [pageNumber]="pageNumber"
+      (changePaginagtionEvent)="onChangePagination($event)"
+    ></app-pages-navigator>
+  </div>
+  <!-- #endregion -->
+  <!-- #region FormSide -->
+  <section
+    class="col-md-6 col-12"
+    style="
+      border-right: 1px solid var(--border-color);
+      border-left: 1px solid var(--border-color);
+    "
+  >
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
+      style="height: 100%"
+      *ngIf="
+        (!selectedCustomer && !adding) || (selectedCustomer && adding);
+        else Content
+      "
+    >
+      <h2>
+        Click
+        <i style="color: lightseagreen" class="fa-solid fa-gear"></i> Button to
+        Start Editing
+      </h2>
+      <h2 class="fw-bold">Or</h2>
+      <h2>
+        Click
+        <i style="color: green" class="fa-solid fa-square-plus"></i>
+        Button to Create New Customer
+      </h2>
+    </div>
+    <ng-template #Content>
+      <div class="w-100 pb-5 pb-md-0">
+        <div *ngIf="selectedCustomer && !adding">
+          <div class="d-flex align-items-center">
+            <h3 class="fw-bold mx-3 my-0">
+              {{ selectedCustomer.firstName + " " + selectedCustomer.lastName }}
+            </h3>
+          </div>
+          <hr />
+          <app-customer-form
+            [selectedCustomer]="selectedCustomer"
+            (onSubmitForm)="Submit($event)"
+            (onCancelForm)="Cancel()"
+          ></app-customer-form>
+        </div>
+        <div *ngIf="!selectedCustomer && adding">
+          <div class="d-flex align-items-center">
+            <h3 class="fw-bold mx-2 my-0">Create New Customer</h3>
+          </div>
+          <hr />
+          <app-customer-form
+            [selectedCustomer]="selectedCustomer"
+            (onSubmitForm)="Submit($event)"
+            (onCancelForm)="Cancel()"
+          ></app-customer-form>
+        </div>
+      </div>
+    </ng-template>
+  </section>
+  <!-- #endregion -->
+</div>

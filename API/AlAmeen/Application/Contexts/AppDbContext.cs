@@ -16,5 +16,13 @@ namespace Application.Contexts
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<OrderShippingAddress> OrderShippingAddresses { get; set; }
         public DbSet<OrderBillingAddress> OrderBillingAddresses { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer() { FirstName = "Abdelrahman" , LastName = "Ahmed" , Email = "Abdelrahman@yahoo.com" , Phone = "01555447488" , IsActive = true } ,
+                );
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

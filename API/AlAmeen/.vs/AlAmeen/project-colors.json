@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7ae58b17-35ed-47be-a766-b0d95bb49025": {
+      "ProjectGuid": "7ae58b17-35ed-47be-a766-b0d95bb49025",
+      "DisplayName": "API",
+      "ColorIndex": 0
+    },
+    "1d86898d-22bc-4b33-a186-f383d70bf415": {
+      "ProjectGuid": "1d86898d-22bc-4b33-a186-f383d70bf415",
+      "DisplayName": "Domain",
+      "ColorIndex": 1
+    },
+    "79b9fa88-760a-4344-8e00-a1ae3a12a130": {
+      "ProjectGuid": "79b9fa88-760a-4344-8e00-a1ae3a12a130",
+      "DisplayName": "Application",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
