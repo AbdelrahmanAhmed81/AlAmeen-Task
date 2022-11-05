@@ -9,6 +9,8 @@ namespace Application.Repositories.Interfaces
 {
     public interface ICustomerRepository
     {
-        //Task<Customer>
+        Task<IList<Customer>> GetAll();
+        Task<Customer> Create(Customer customer);
+        Task<Customer> Update(Customer customer);
     }
 }

@@ -9,7 +9,6 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { CustomersComponent } from './components/customers/customers.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
-import { PagesNavigatorComponent } from './components/pages-navigator/pages-navigator.component';
 import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { AlertComponent } from './components/alert/alert.component';
     LoadingSpinnerComponent,
     CustomersComponent,
     CustomerFormComponent,
-    PagesNavigatorComponent,
     AlertComponent
   ],
   imports: [

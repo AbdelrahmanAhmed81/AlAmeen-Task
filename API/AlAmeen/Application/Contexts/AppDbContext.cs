@@ -38,12 +38,13 @@ namespace Application.Contexts
             modelBuilder.Entity<OrderDetail>().HasData(
                 new OrderDetail() { OrderDetailId = 1 , OrderId = 1 , ProductId = 1 , Quantity = 5 , Price = 5000 , Total = 25000 , Tax = 3500 } ,
                 new OrderDetail() { OrderDetailId = 2 , OrderId = 1 , ProductId = 2 , Quantity = 2 , Price = 7500 , Total = 15000 , Tax = 2100 } ,
-                new OrderDetail() { OrderDetailId = 3 , OrderId = 2 , ProductId = 3 , Quantity = 6 , Price = 6500 , Total = 39000 , Tax = 5460 }
+                new OrderDetail() { OrderDetailId = 3 , OrderId = 2 , ProductId = 3 , Quantity = 6 , Price = 6500 , Total = 39000 , Tax = 5460 } ,
+                new OrderDetail() { OrderDetailId = 4 , OrderId = 2 , ProductId = 2 , Quantity = 3 , Price = 7500 , Total = 22500 , Tax = 3150 }
                 );
 
             modelBuilder.Entity<Order>().HasData(
-                new Order() { OrderId = 1 , Status = "Deliverd" , CustomerId = 1 } ,
-                new Order() { OrderId = 2 , Status = "Waiting" , CustomerId = 2 }
+                new Order() { OrderId = 1 , Status = "Deliverd" , CustomerId = 1 , Subtotal = 40000 , Tax = 5600 , Total = 34400 } ,
+                new Order() { OrderId = 2 , Status = "Waiting" , CustomerId = 2 , Subtotal = 61500 , Tax = 8610 , Total = 52890 }
                 );
 
             modelBuilder.Entity<OrderBillingAddress>().HasData(

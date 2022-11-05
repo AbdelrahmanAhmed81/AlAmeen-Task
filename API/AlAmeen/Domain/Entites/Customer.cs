@@ -14,7 +14,7 @@
         public string? Phone { get; set; }
         public bool IsActive { get; set; }
 
-        public IList<Order> Orders { get; set; }
+        public IList<Order>? Orders { get; set; }
         public IList<CustomerAddress> CustomerAddresses { get; set; }
 
     }

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Application.Contexts;
 using Newtonsoft.Json;
+using Application.Repositories.Interfaces;
+using Application.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,18 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("AMCS"));
 });
+builder.Services.AddScoped<ICustomerRepository , CustomerRepository>();
+
+builder.Services.AddCors((options) =>
+{
+    options.AddDefaultPolicy(options =>
+    {
+        options
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -29,6 +43,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

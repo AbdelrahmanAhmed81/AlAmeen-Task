@@ -1,21 +1,8 @@
 <div class="row flex-md-row flex-column-reverse">
   <!-- #region DataSide -->
   <div class="col-md-6 col-12">
-    <div class="row justify-content-between mb-2">
-      <input
-        class="col-10 p-2"
-        style="
-          border: 2px solid var(--border-color);
-          background-color: var(--bgcolor);
-          color: inherit;
-          border-radius: 5px;
-        "
-        type="search"
-        [value]="searchText"
-        (input)="searchTextInput($event)"
-        placeholder="enter course title"
-      />
-      <div class="col-1 mx-2 p-0">
+    <div class="row justify-content-end mb-2">
+      <div class="col-1 p-0">
         <a style="cursor: pointer" (click)="onClickAdd()">
           <i
             style="color: green; font-size: 47px"
@@ -44,7 +31,7 @@
             <tr *ngFor="let customer of customers">
               <td>{{ customer.firstName + " " + customer.lastName }}</td>
               <td>
-                <div class="d-flex">
+                <div class="d-flex justify-content-end">
                   <a
                     class="mx-2"
                     style="color: lightseagreen; cursor: pointer"
@@ -58,12 +45,6 @@
         </table>
       </ng-template>
     </ng-template>
-    <app-pages-navigator
-      [itemsTotalCount]="totalCustomers"
-      [pageCapacity]="pageCapacity"
-      [pageNumber]="pageNumber"
-      (changePaginagtionEvent)="onChangePagination($event)"
-    ></app-pages-navigator>
   </div>
   <!-- #endregion -->
   <!-- #region FormSide -->
@@ -98,7 +79,7 @@
       <div class="w-100 pb-5 pb-md-0">
         <div *ngIf="selectedCustomer && !adding">
           <div class="d-flex align-items-center">
-            <h3 class="fw-bold mx-3 my-0">
+            <h3 class="fw-bold my-1">
               {{ selectedCustomer.firstName + " " + selectedCustomer.lastName }}
             </h3>
           </div>

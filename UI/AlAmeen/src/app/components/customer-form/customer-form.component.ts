@@ -33,7 +33,7 @@ export class CustomerFormComponent implements OnInit {
       'lastName': new FormControl(null, [Validators.required]),
       'email': new FormControl(null, [Validators.required]),
       'phone': new FormControl(null, [Validators.required]),
-      'isActive': new FormControl(null),
+      'isActive': new FormControl(true),
     });
   }
   ngOnChanges(changes: SimpleChanges): void {

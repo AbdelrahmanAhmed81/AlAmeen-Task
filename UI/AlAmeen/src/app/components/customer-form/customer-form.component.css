@@ -9,13 +9,8 @@ textarea,
 select {
   background-color: transparent;
   color: inherit;
-  border: 1px solid var(--border-color);
+  border: 1px solid grey;
   padding-left: 5px;
-}
-
-option {
-  background-color: var(--bg-color);
-  color: inherit;
 }
 
 input[type="file"] {

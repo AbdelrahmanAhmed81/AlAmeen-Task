@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/models/Customer';
 import { AlertLevel, AlertService } from 'src/app/services/alert.service';
@@ -10,46 +9,24 @@ import { CustomerService } from 'src/app/services/customer.service';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  pageNumber: number = 1;
-  pageCapacity: number = 10;
-  queryParams: HttpParams = new HttpParams()
-    .append('pageNumber', this.pageNumber)
-    .append('pageCapacity', this.pageCapacity);
-
   isLoading: boolean = false;
   customers: Customer[] = [];
-
-  totalCustomers: number = 0;
-
-  searchText: string = '';
-
   selectedCustomer: Customer | undefined;
   adding: boolean = false;
+
   constructor(private alertService: AlertService, private customerService: CustomerService) { }
 
   ngOnInit(): void {
+    this.loadCourses();
   }
 
   loadCourses() {
     this.isLoading = true;
-    this.customerService.getAll(this.queryParams)
+    this.customerService.getAll()
       .subscribe(data => {
-        this.customers = data.customers;
-        this.totalCustomers = data.customersCount
+        this.customers = data;
         this.isLoading = false;
       })
-  }
-
-  searchTextInput(e: Event) {
-    let value: string = (<HTMLInputElement>e.target).value;
-    this.queryParams = this.queryParams.set('searchText', value)
-    this.loadCourses()
-  }
-
-  onChangePagination(data: { pageNumber: number, pageCapacity: number }) {
-    this.queryParams = this.queryParams.set('pageNumber', data.pageNumber);
-    this.queryParams = this.queryParams.set('pageCapacity', data.pageCapacity);
-    this.loadCourses();
   }
 
   onClickEdit(customer: Customer) {
