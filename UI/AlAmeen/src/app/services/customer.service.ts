@@ -15,11 +15,11 @@ export class CustomerService {
     return this.http.get<Customer[]>(this.url);
   }
 
-  update(customerData: FormData): Observable<any> {
-    return this.http.put(this.url, customerData);
+  update(customerData: Customer): Observable<any> {
+    return this.http.put(this.url + '/Update', customerData);
   }
 
-  add(customerData: FormData): Observable<any> {
-    return this.http.post(this.url, customerData);
+  add(customerData: Customer): Observable<any> {
+    return this.http.post(this.url + '/Add', customerData);
   }
 }

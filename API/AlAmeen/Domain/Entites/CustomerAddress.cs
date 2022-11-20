@@ -13,7 +13,7 @@
         public bool IsBillingAddress { get; set; }
 
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
     }
 }

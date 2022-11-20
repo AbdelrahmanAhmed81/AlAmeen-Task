@@ -1,4 +1,61 @@
 <div class="row flex-md-row flex-column-reverse">
+  <!-- #region FormSide -->
+  <section
+    class="col-md-6 col-12"
+    style="
+      border-right: 1px solid var(--border-color);
+      border-left: 1px solid var(--border-color);
+    "
+  >
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
+      style="height: 100%"
+      *ngIf="
+        (!selectedCustomer && !adding) || (selectedCustomer && adding);
+        else Content
+      "
+    >
+      <h2>
+        Click
+        <i style="color: lightseagreen" class="fa-solid fa-gear"></i> Button to
+        Start Editing
+      </h2>
+      <h2 class="fw-bold">Or</h2>
+      <h2>
+        Click
+        <i style="color: green" class="fa-solid fa-square-plus"></i>
+        Button to Create New Customer
+      </h2>
+    </div>
+    <ng-template #Content>
+      <div class="w-100 pb-5 pb-md-0">
+        <div *ngIf="selectedCustomer && !adding">
+          <div class="d-flex align-items-center">
+            <h3 class="fw-bold my-1">
+              {{ selectedCustomer.firstName + " " + selectedCustomer.lastName }}
+            </h3>
+          </div>
+          <hr />
+          <app-customer-form
+            [selectedCustomer]="selectedCustomer"
+            (onSubmitForm)="Submit($event)"
+            (onCancelForm)="Cancel()"
+          ></app-customer-form>
+        </div>
+        <div *ngIf="!selectedCustomer && adding">
+          <div class="d-flex align-items-center">
+            <h3 class="fw-bold mx-0 my-1">Create New Customer</h3>
+          </div>
+          <hr />
+          <app-customer-form
+            (onSubmitForm)="Submit($event)"
+            (onCancelForm)="Cancel()"
+          ></app-customer-form>
+        </div>
+      </div>
+    </ng-template>
+  </section>
+  <!-- #endregion -->
   <!-- #region DataSide -->
   <div class="col-md-6 col-12">
     <div class="row justify-content-end mb-2">
@@ -46,63 +103,5 @@
       </ng-template>
     </ng-template>
   </div>
-  <!-- #endregion -->
-  <!-- #region FormSide -->
-  <section
-    class="col-md-6 col-12"
-    style="
-      border-right: 1px solid var(--border-color);
-      border-left: 1px solid var(--border-color);
-    "
-  >
-    <div
-      class="d-flex flex-column align-items-center justify-content-center"
-      style="height: 100%"
-      *ngIf="
-        (!selectedCustomer && !adding) || (selectedCustomer && adding);
-        else Content
-      "
-    >
-      <h2>
-        Click
-        <i style="color: lightseagreen" class="fa-solid fa-gear"></i> Button to
-        Start Editing
-      </h2>
-      <h2 class="fw-bold">Or</h2>
-      <h2>
-        Click
-        <i style="color: green" class="fa-solid fa-square-plus"></i>
-        Button to Create New Customer
-      </h2>
-    </div>
-    <ng-template #Content>
-      <div class="w-100 pb-5 pb-md-0">
-        <div *ngIf="selectedCustomer && !adding">
-          <div class="d-flex align-items-center">
-            <h3 class="fw-bold my-1">
-              {{ selectedCustomer.firstName + " " + selectedCustomer.lastName }}
-            </h3>
-          </div>
-          <hr />
-          <app-customer-form
-            [selectedCustomer]="selectedCustomer"
-            (onSubmitForm)="Submit($event)"
-            (onCancelForm)="Cancel()"
-          ></app-customer-form>
-        </div>
-        <div *ngIf="!selectedCustomer && adding">
-          <div class="d-flex align-items-center">
-            <h3 class="fw-bold mx-2 my-0">Create New Customer</h3>
-          </div>
-          <hr />
-          <app-customer-form
-            [selectedCustomer]="selectedCustomer"
-            (onSubmitForm)="Submit($event)"
-            (onCancelForm)="Cancel()"
-          ></app-customer-form>
-        </div>
-      </div>
-    </ng-template>
-  </section>
   <!-- #endregion -->
 </div>

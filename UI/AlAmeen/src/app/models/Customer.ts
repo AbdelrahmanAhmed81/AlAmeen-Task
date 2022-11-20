@@ -2,13 +2,13 @@ import { CustomerAddress } from "./CustomerAddress";
 import { Order } from "./Order";
 
 export interface Customer {
-    customerId: number;
-    code: string;
+    customerId?: number;
+    code?: string;
     firstName: string;
     lastName: string;
     email: string;
     phone: string | null;
     isActive: boolean;
-    orders: Order[];
+    orders?: Order[];
     customerAddresses: CustomerAddress[];
 }

@@ -23,13 +23,13 @@ namespace API.Controllers
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> Add(Customer customer)
+        public async Task<IActionResult> Add([FromBody] Customer customer)
         {
             return Ok(await customerRepository.Create(customer));
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update(Customer customer)
+        public async Task<IActionResult> Update([FromForm] Customer customer)
         {
             return Ok(await customerRepository.Update(customer));
         }

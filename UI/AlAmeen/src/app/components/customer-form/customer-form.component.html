@@ -1,4 +1,5 @@
 <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+  <h4 class="fw-bold">Personal Info</h4>
   <div class="row">
     <label class="col-3" for="firstName">First Name</label>
     <input
@@ -95,6 +96,179 @@
       <option value="true">Active</option>
       <option value="false">Not Active</option>
     </select>
+  </div>
+  <hr />
+  <div formArrayName="customerAddresses">
+    <div class="d-flex justify-content-between">
+      <h4 class="fw-bold">Address Info</h4>
+      <button class="btn btn-secondary" type="button" (click)="addAddress()">
+        Add Address
+      </button>
+    </div>
+    <div
+      class="from-group"
+      *ngFor="let address of addressesControls; let i = index"
+    >
+      <div [formGroupName]="i">
+        <div class="d-flex justify-content-between">
+          <h5 class="fw-bold">Address {{ i + 1 }}</h5>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="removeAddress(i)"
+          >
+            remove
+          </button>
+        </div>
+        <div class="row">
+          <label class="col-3" [for]="'addressLine1' + i">Address Line 1</label>
+          <input
+            class="col-9"
+            type="text"
+            [id]="'addressLine1' + i"
+            formControlName="addressLine1"
+            placeholder="enter address line 1"
+          />
+          <div class="col-3"></div>
+          <span
+            class="col-9"
+            *ngIf="
+              addressesControls[i].controls['addressLine1'].dirty &&
+              addressesControls[i].controls['addressLine1'].invalid
+            "
+          >
+            address line 1 field is required
+          </span>
+        </div>
+        <div class="row">
+          <label class="col-3" [for]="'addressLine2' + i">Address Line 2</label>
+          <input
+            class="col-9"
+            type="text"
+            [id]="'addressLine2' + i"
+            formControlName="addressLine2"
+            placeholder="enter address line 2"
+          />
+          <div class="col-3"></div>
+          <span
+            class="col-9"
+            *ngIf="
+              addressesControls[i].controls['addressLine2'].dirty &&
+              addressesControls[i].controls['addressLine2'].invalid
+            "
+          >
+            address line 2 field is required
+          </span>
+        </div>
+        <div class="row">
+          <label class="col-3" [for]="'state' + i">State</label>
+          <input
+            class="col-9"
+            type="text"
+            [id]="'state' + i"
+            formControlName="state"
+            placeholder="enter state"
+          />
+          <div class="col-3"></div>
+          <span
+            class="col-9"
+            *ngIf="
+              addressesControls[i].controls['state'].dirty &&
+              addressesControls[i].controls['state'].invalid
+            "
+          >
+            state field is required
+          </span>
+        </div>
+        <div class="row">
+          <label class="col-3" [for]="'city' + i">City</label>
+          <input
+            class="col-9"
+            type="text"
+            [id]="'city' + i"
+            formControlName="city"
+            placeholder="enter city"
+          />
+          <div class="col-3"></div>
+          <span
+            class="col-9"
+            *ngIf="
+              addressesControls[i].controls['city'].dirty &&
+              addressesControls[i].controls['city'].invalid
+            "
+          >
+            city field is required
+          </span>
+        </div>
+        <div class="row">
+          <label class="col-3" [for]="'country' + i">Country</label>
+          <input
+            class="col-9"
+            type="text"
+            [id]="'country' + i"
+            formControlName="country"
+            placeholder="enter country"
+          />
+          <div class="col-3"></div>
+          <span
+            class="col-9"
+            *ngIf="
+              addressesControls[i].controls['country'].dirty &&
+              addressesControls[i].controls['country'].invalid
+            "
+          >
+            country field is required
+          </span>
+        </div>
+        <div class="row">
+          <label class="col-3" [for]="'postalCode' + i">Postal code</label>
+          <input
+            class="col-9"
+            type="text"
+            [id]="'postalCode' + i"
+            formControlName="postalCode"
+            placeholder="enter postal code"
+          />
+          <div class="col-3"></div>
+          <span
+            class="col-9"
+            *ngIf="
+              addressesControls[i].controls['postalCode'].dirty &&
+              addressesControls[i].controls['postalCode'].invalid
+            "
+          >
+            postal code field is required
+          </span>
+        </div>
+        <div class="row">
+          <label class="col-3" [for]="'isShippingAddress' + i"
+            >Is Shipping Address</label
+          >
+          <select
+            class="col-9"
+            [id]="'isShippingAddress' + i"
+            formControlName="isShippingAddress"
+          >
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+        <div class="row">
+          <label class="col-3" [for]="'isBillingAddress' + i"
+            >Is Billing Address</label
+          >
+          <select
+            class="col-9"
+            [id]="'isBillingAddress' + i"
+            formControlName="isBillingAddress"
+          >
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+      </div>
+      <hr />
+    </div>
   </div>
 
   <div class="row justify-content-end my-4">

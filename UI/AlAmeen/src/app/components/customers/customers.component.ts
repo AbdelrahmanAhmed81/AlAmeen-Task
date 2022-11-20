@@ -44,17 +44,17 @@ export class CustomersComponent implements OnInit {
     this.selectedCustomer = undefined;
   }
 
-  Submit(courseData: FormData) {
+  Submit(customerData: Customer) {
     if (this.adding && !this.selectedCustomer) {
-      this.customerService.add(courseData).subscribe(data => {
+      this.customerService.add(customerData).subscribe(data => {
         this.Cancel();
-        this.alertService.showAlert.next({ message: 'Course Added Succesfully', level: AlertLevel.success });
+        this.alertService.showAlert.next({ message: 'Customer Added Succesfully', level: AlertLevel.success });
         this.loadCourses();
       })
     }
     if (this.selectedCustomer && !this.adding) {
-      courseData.append('customerId', this.selectedCustomer.customerId.toString());
-      this.customerService.update(courseData).subscribe(data => {
+      customerData.customerId = this.selectedCustomer.customerId;
+      this.customerService.update(customerData).subscribe(data => {
         this.Cancel();
         this.alertService.showAlert.next({ message: 'Changes Saved Succesfully', level: AlertLevel.info });
         this.loadCourses();
